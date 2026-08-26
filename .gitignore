@@ -1,0 +1,8 @@
+/.gradle
+/.vscode
+/dist
+/node_modules
+/src/.idea
+/src/native/.idea
+/src/native/.gradle
+/build

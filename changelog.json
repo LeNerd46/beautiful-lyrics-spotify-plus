@@ -1,0 +1,14 @@
+[
+    {
+        "version": "0.1",
+        "release": "2026-8-26",
+        "sections": [
+            {
+                "heading": "New",
+                "changes": [
+                    "Initial release"
+                ]
+            }
+        ]
+    }
+]
