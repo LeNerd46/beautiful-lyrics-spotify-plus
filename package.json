@@ -18,7 +18,7 @@
         "@types/react": "^19.2.14"
     },
     "scripts": {
-        "build:native": "node tools/build-native.mjs",
-        "build": "node ../../app/src/main/assets/nodejs-src/tools/dev-cli.mjs build . --entry src/index.tsx --outfile ../../app/src/main/assets/nodejs/scriptss/beautiful-lyrics/index.js"
+        "build:native": "node E:/Projects/SpotifyPlus/app/src/main/assets/nodejs-src/tools/build-native.mjs",
+        "build": "node E:/Projects/SpotifyPlus/app/src/main/assets/nodejs-src/tools/dev-cli.mjs build . --entry src/index.tsx --outfile ./dist/index.js"
     }
 }
