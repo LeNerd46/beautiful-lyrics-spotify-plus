@@ -1,0 +1,26 @@
+{
+    "id": "com.lenerd.beautifullyrics",
+    "name": "Beautiful Lyrics",
+    "description": "Adds beautiful lyrics to Spotify!",
+    "version": "1.0.0",
+    "authors": [
+        {
+            "name": "LeNerd46",
+            "url": "https://www.github.com/LeNerd46"
+        }
+    ],
+    "tags": [
+        "lyrics"
+    ],
+    "preview": "screenshot.png",
+    "changelog": "changelog.json",
+    "api": 2,
+    "assets": [
+        "assets/**/*"
+    ],
+    "main": "index.js",
+    "native": {
+        "apk": "lyrics.apk",
+        "pluginClass": "com.lenerd.lyricsnative.NativePlugin"
+    }
+}
