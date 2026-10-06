@@ -5,4 +5,5 @@
 /src/native/.idea
 /src/native/.gradle
 /src/native/build
+/src/native/app/build
 /build

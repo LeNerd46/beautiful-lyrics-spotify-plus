@@ -19,6 +19,7 @@
     },
     "scripts": {
         "dev": "spotifyplus dev",
-        "build": "spotifyplus build"
+        "build:native": "node tools/build-native.mjs",
+        "build": "npm run build:native && spotifyplus build"
     }
 }
