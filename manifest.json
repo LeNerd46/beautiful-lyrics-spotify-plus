@@ -20,7 +20,7 @@
     ],
     "main": "dist/index.js",
     "native": {
-        "apk": "lyrics.apk",
+        "apk": "dist/lyrics.apk",
         "pluginClass": "com.lenerd.lyricsnative.NativePlugin"
     }
 }
