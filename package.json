@@ -9,7 +9,7 @@
         "franc": "^6.2.0",
         "kuroshiro": "^1.2.0",
         "pinyin": "^4.0.0",
-        "spotifyplus": "latest",
+        "spotifyplus": "^0.1.11",
         "typescript-cubic-spline": "^1.0.1"
     },
     "devDependencies": {

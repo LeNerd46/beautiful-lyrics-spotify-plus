@@ -87642,12 +87642,12 @@ var EmphasizedLetter = ({
     const _spotifyPlusClosure = {
       clamp: {
         __spotifyPlusShareable: "workletGlobal",
-        module: "spotifyplus/react/Animated",
+        module: "spotifyplus/react/reanimated",
         name: "clamp"
       },
       getTimestamp: {
         __spotifyPlusShareable: "workletGlobal",
-        module: "spotifyplus/react/Animated",
+        module: "spotifyplus/react/reanimated",
         name: "getTimestamp"
       },
       GlowDampingRatio,
@@ -87655,7 +87655,7 @@ var EmphasizedLetter = ({
       glowSamples,
       interpolate: {
         __spotifyPlusShareable: "workletGlobal",
-        module: "spotifyplus/react/Animated",
+        module: "spotifyplus/react/reanimated",
         name: "interpolate"
       },
       letterEnd,
@@ -87718,7 +87718,7 @@ var EmphasizedLetter = ({
     const _spotifyPlusClosure2 = {
       interpolate: {
         __spotifyPlusShareable: "workletGlobal",
-        module: "spotifyplus/react/Animated",
+        module: "spotifyplus/react/reanimated",
         name: "interpolate"
       },
       motion,
@@ -87764,12 +87764,12 @@ var EmphasizedLetter = ({
     const _spotifyPlusClosure3 = {
       clamp: {
         __spotifyPlusShareable: "workletGlobal",
-        module: "spotifyplus/react/Animated",
+        module: "spotifyplus/react/reanimated",
         name: "clamp"
       },
       interpolateColor: {
         __spotifyPlusShareable: "workletGlobal",
-        module: "spotifyplus/react/Animated",
+        module: "spotifyplus/react/reanimated",
         name: "interpolateColor"
       },
       motion
@@ -87809,7 +87809,7 @@ var EmphasizedLetter = ({
     const _spotifyPlusClosure4 = {
       clamp: {
         __spotifyPlusShareable: "workletGlobal",
-        module: "spotifyplus/react/Animated",
+        module: "spotifyplus/react/reanimated",
         name: "clamp"
       },
       motion
@@ -87895,13 +87895,13 @@ var SyllableView = ({
     const _spotifyPlusClosure5 = {
       clamp: {
         __spotifyPlusShareable: "workletGlobal",
-        module: "spotifyplus/react/Animated",
+        module: "spotifyplus/react/reanimated",
         name: "clamp"
       },
       endMs,
       getTimestamp: {
         __spotifyPlusShareable: "workletGlobal",
-        module: "spotifyplus/react/Animated",
+        module: "spotifyplus/react/reanimated",
         name: "getTimestamp"
       },
       GlowDampingRatio,
@@ -87909,7 +87909,7 @@ var SyllableView = ({
       glowSamples,
       interpolate: {
         __spotifyPlusShareable: "workletGlobal",
-        module: "spotifyplus/react/Animated",
+        module: "spotifyplus/react/reanimated",
         name: "interpolate"
       },
       MaximumSpringDeltaSeconds,
@@ -88001,12 +88001,12 @@ var SyllableView = ({
     const _spotifyPlusClosure7 = {
       clamp: {
         __spotifyPlusShareable: "workletGlobal",
-        module: "spotifyplus/react/Animated",
+        module: "spotifyplus/react/reanimated",
         name: "clamp"
       },
       interpolateColor: {
         __spotifyPlusShareable: "workletGlobal",
-        module: "spotifyplus/react/Animated",
+        module: "spotifyplus/react/reanimated",
         name: "interpolateColor"
       },
       motion
@@ -88046,7 +88046,7 @@ var SyllableView = ({
     const _spotifyPlusClosure8 = {
       clamp: {
         __spotifyPlusShareable: "workletGlobal",
-        module: "spotifyplus/react/Animated",
+        module: "spotifyplus/react/reanimated",
         name: "clamp"
       },
       motion
@@ -88453,18 +88453,18 @@ var InterludeView = ({
     const _spotifyPlusClosure = {
       clamp: {
         __spotifyPlusShareable: "workletGlobal",
-        module: "spotifyplus/react/Animated",
+        module: "spotifyplus/react/reanimated",
         name: "clamp"
       },
       endMs,
       getTimestamp: {
         __spotifyPlusShareable: "workletGlobal",
-        module: "spotifyplus/react/Animated",
+        module: "spotifyplus/react/reanimated",
         name: "getTimestamp"
       },
       interpolate: {
         __spotifyPlusShareable: "workletGlobal",
-        module: "spotifyplus/react/Animated",
+        module: "spotifyplus/react/reanimated",
         name: "interpolate"
       },
       mainMotionState,
@@ -88534,7 +88534,7 @@ var InterludeView = ({
       endMs,
       interpolate: {
         __spotifyPlusShareable: "workletGlobal",
-        module: "spotifyplus/react/Animated",
+        module: "spotifyplus/react/reanimated",
         name: "interpolate"
       },
       mainMotion,
@@ -88617,7 +88617,7 @@ var InterludeView = ({
       const _spotifyPlusClosure3 = {
         clamp: {
           __spotifyPlusShareable: "workletGlobal",
-          module: "spotifyplus/react/Animated",
+          module: "spotifyplus/react/reanimated",
           name: "clamp"
         },
         dotGlowSamples,
@@ -88629,12 +88629,12 @@ var InterludeView = ({
         endMs,
         getTimestamp: {
           __spotifyPlusShareable: "workletGlobal",
-          module: "spotifyplus/react/Animated",
+          module: "spotifyplus/react/reanimated",
           name: "getTimestamp"
         },
         interpolate: {
           __spotifyPlusShareable: "workletGlobal",
-          module: "spotifyplus/react/Animated",
+          module: "spotifyplus/react/reanimated",
           name: "interpolate"
         },
         motionState,
@@ -88701,7 +88701,7 @@ var InterludeView = ({
       const _spotifyPlusClosure4 = {
         clamp: {
           __spotifyPlusShareable: "workletGlobal",
-          module: "spotifyplus/react/Animated",
+          module: "spotifyplus/react/reanimated",
           name: "clamp"
         },
         dotMotion
@@ -88807,18 +88807,18 @@ var LineView = ({
     const _spotifyPlusClosure = {
       clamp: {
         __spotifyPlusShareable: "workletGlobal",
-        module: "spotifyplus/react/Animated",
+        module: "spotifyplus/react/reanimated",
         name: "clamp"
       },
       endMs,
       getTimestamp: {
         __spotifyPlusShareable: "workletGlobal",
-        module: "spotifyplus/react/Animated",
+        module: "spotifyplus/react/reanimated",
         name: "getTimestamp"
       },
       interpolate: {
         __spotifyPlusShareable: "workletGlobal",
-        module: "spotifyplus/react/Animated",
+        module: "spotifyplus/react/reanimated",
         name: "interpolate"
       },
       motionState,
@@ -88871,12 +88871,12 @@ var LineView = ({
     const _spotifyPlusClosure2 = {
       clamp: {
         __spotifyPlusShareable: "workletGlobal",
-        module: "spotifyplus/react/Animated",
+        module: "spotifyplus/react/reanimated",
         name: "clamp"
       },
       interpolateColor: {
         __spotifyPlusShareable: "workletGlobal",
-        module: "spotifyplus/react/Animated",
+        module: "spotifyplus/react/reanimated",
         name: "interpolateColor"
       },
       motion
@@ -88943,7 +88943,7 @@ var LineView = ({
     const _spotifyPlusClosure4 = {
       clamp: {
         __spotifyPlusShareable: "workletGlobal",
-        module: "spotifyplus/react/Animated",
+        module: "spotifyplus/react/reanimated",
         name: "clamp"
       },
       motion
@@ -89248,47 +89248,7 @@ var app_default = App;
 
 // src/index.tsx
 var import_jsx_runtime7 = require("react/jsx-runtime");
-import_spotifyplus4.SpotifyPlus.Surfaces.register("lyrics-view", (surface) => {
-  return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(app_default, {});
-});
-import_spotifyplus4.SpotifyPlus.Settings.registerSettings([{
-  title: "Test",
-  items: [{
-    id: "test-1",
-    label: "Test Setting",
-    type: "toggle",
-    value: false
-  }, {
-    id: "test-2",
-    label: "Other Test Setting",
-    type: "slider",
-    min: 0,
-    max: 100,
-    value: 50
-  }, {
-    id: "test-3",
-    label: "Another Test Setting",
-    type: "date",
-    value: "2026-07-24"
-  }, {
-    id: "test-4",
-    label: "Dropdown Test",
-    type: "select",
-    options: [{
-      label: "Option 1",
-      description: "This is a description",
-      value: "option-1"
-    }, {
-      label: "Option 2",
-      value: "option-2"
-    }],
-    value: "option-1"
-  }]
-}]);
-var handleChange = (setting) => {
-  console.log(setting);
-};
-import_spotifyplus4.SpotifyPlus.Events.on("settings.changed", handleChange);
+import_spotifyplus4.SpotifyPlus.UI.overlay("lyrics.page", () => /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(app_default, {}));
 /*! Bundled license information:
 
 pinyin/lib/cjs/pinyin.js:
