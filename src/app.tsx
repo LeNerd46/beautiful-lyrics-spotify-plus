@@ -33,44 +33,7 @@ const App = () => {
                     return;
                 }
 
-                SpotifyPlus.log(`Current Track: ${track.title} by ${track.artist}`);
-                SpotifyPlus.log(`Current Track ID: ${track.id}`);
-
-                const response = await fetch('https://api.spicylyrics.org/query', {
-                    method: 'POST',
-                    headers: {
-                        'Spicylyrics-Webauth': `Bearer ${SpotifyPlus.Platform.Session.accessToken}`,
-                        'Spicylyrics-Version': spicyVersion,
-                        'Origin': 'https://xpui.app.spotify.com',
-                        'Referer': 'https://xpui.app.spotify.com/',
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json',
-                        'Sec-Fetch-Mode': 'cors',
-                        'Sec-Fetch-Site': 'cross-site',
-                        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.7559.97 Spotify/1.2.86.502 Safari/537.36',
-                        'Sec-Ch-Ua': '"Not(A:Brand";v="8", "Chromium";v="144"',
-                        'Sec-Fetch-Dest': 'empty',
-                        'Priority': 'u=1, i',
-                        'Accept-Language': 'en-Latn-US,en-US;q=0.9,en-Latn;q=0.8,en;q=0.7',
-                        'Sec-Ch-Ua-Mobile': '?0',
-                        'Sec-Ch-Ua-Platform': '"Windows"'
-                    },
-                    body: JSON.stringify({
-                        queries: [
-                            {
-                                operation: 'lyrics',
-                                variables: {
-                                    id: track.id,
-                                    auth: 'SpicyLyrics-WebAuth'
-                                }
-                            }
-                        ],
-                        client: {
-                            version: spicyVersion
-                        }
-                    })
-                });
-
+                const response = await fetch(`https://spotifyplus-api.devon-shoutz.workers.dev/api/lyrics/${track.id}`);
                 const json = await response.json() as any;
 
                 if (!response.ok) {

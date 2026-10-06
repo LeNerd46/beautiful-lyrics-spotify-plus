@@ -18,7 +18,7 @@
     "assets": [
         "assets/**/*"
     ],
-    "main": "index.js",
+    "main": "dist/index.js",
     "native": {
         "apk": "lyrics.apk",
         "pluginClass": "com.lenerd.lyricsnative.NativePlugin"
