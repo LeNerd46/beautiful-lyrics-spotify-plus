@@ -89164,9 +89164,7 @@ var App = () => {
           import_spotifyplus3.SpotifyPlus.log("Failed to get lyrics :(");
           return;
         }
-        console.log(json.queries[1]?.result);
-        console.log(json.queries[1]?.result?.data);
-        const transformed = transformLyrics(json.queries[1]?.result?.data);
+        const transformed = transformLyrics(json);
         setLyrics(transformed);
       } catch (e) {
         setError(`An error occurred while fetching lyrics | ${e.message}`);
