@@ -18,6 +18,7 @@
         "@types/react": "^19.2.14"
     },
     "scripts": {
+        "test": "node --test tools/lyrics-scroll.test.mjs tools/native-motion.test.mjs",
         "dev": "spotifyplus dev",
         "build:native": "node tools/build-native.mjs",
         "build": "npm run build:native && spotifyplus build"

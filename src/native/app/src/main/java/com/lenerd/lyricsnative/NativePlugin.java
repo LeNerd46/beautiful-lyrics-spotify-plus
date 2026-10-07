@@ -9,5 +9,8 @@ public class NativePlugin implements SpotifyPlusPlugin {
     public void register(SpotifyPlusRegistry registry, SpotifyPlusContext context) {
         registry.registerComponent(new GradientText());
         registry.registerComponent(new AnimatedBackground());
+        registry.registerComponent(new LyricCanvas());
+        registry.registerComponent(new LyricRow());
+        registry.registerComponent(new LyricMotion());
     }
 }

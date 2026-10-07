@@ -20,9 +20,6 @@ const App = () => {
                 setLoading(true);
                 setError(undefined);
 
-                const spicyVersion: string = '5.22.3'
-                SpotifyPlus.log(`Current Version: ${spicyVersion}`);
-
                 const track: SpotifyTrack = SpotifyPlus.Player.getCurrentTrack();
                 setTrack(track);
 

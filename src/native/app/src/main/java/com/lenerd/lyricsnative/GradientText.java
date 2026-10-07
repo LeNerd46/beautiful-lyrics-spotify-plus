@@ -24,8 +24,12 @@ public class GradientText extends SpotifyPlusComponent<GradientTextView> {
 
     @Override
     public void updateProps(GradientTextView view, JSONObject oldProps, JSONObject newProps) {
+        view.motionTrack.configure(newProps.optJSONObject("motionTrack"));
         if (newProps.has("text")) {
-            view.setText(String.valueOf(newProps.opt("text")));
+            String text = String.valueOf(newProps.opt("text"));
+            // Animated updates include all static props. Re-setting identical
+            // text here would rebuild TextView layout for every glow/progress update.
+            if (!text.contentEquals(view.getText())) view.setText(text);
         }
         if (newProps.has("textSizeSp") || newProps.has("fontSize")) {
             double textSizeSp = newProps.has("textSizeSp") ? newProps.optDouble("textSizeSp", 14) : newProps.optDouble("fontSize", 14);
@@ -56,9 +60,27 @@ public class GradientText extends SpotifyPlusComponent<GradientTextView> {
         String direction = newProps.optString("gradientDirection", "leftToRight");
         view.setLineState("topToBottom".equals(direction) || "bottomToTop".equals(direction));
 
-        double progress = newProps.optDouble("progress", Double.NaN);
-        if (!Double.isNaN(progress)) {
-            view.setProgress((float) progress * 100f);
+        JSONArray motion = newProps.optJSONArray("lyricMotion");
+        if (motion != null && motion.length() >= 3) {
+            view.setProgress((float) motion.optDouble(0, 0) * 100f);
+            view.setGlow((float) motion.optDouble(1, 0), (float) motion.optDouble(2, 0));
+            if (motion.length() > 3) view.setTranslationY((float) motion.optDouble(3, 0)
+                    * view.getResources().getDisplayMetrics().density);
+            if (motion.length() > 4) {
+                float scale = (float) motion.optDouble(4, 1);
+                view.setScaleX(scale);
+                view.setScaleY(scale);
+            }
+            if (motion.length() > 5) view.setAlpha((float) motion.optDouble(5, 1));
+        } else {
+            double progress = newProps.optDouble("progress", Double.NaN);
+            if (!Double.isNaN(progress)) view.setProgress((float) progress * 100f);
+        }
+        if (motion == null && (newProps.has("glowRadius") || newProps.has("glowOpacity"))) {
+            view.setGlow(
+                (float) newProps.optDouble("glowRadius", view.getGlowRadius()),
+                (float) newProps.optDouble("glowOpacity", view.getGlowOpacity())
+            );
         }
     }
 

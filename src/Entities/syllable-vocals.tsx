@@ -4,7 +4,8 @@ import { SyllableVocalSet } from '../Types/lyrics-types'
 import SyllableView from './syllable';
 import Spline from 'typescript-cubic-spline';
 import { SpotifyPlus } from 'spotifyplus';
-import Animated, { SharedValue, useAnimatedStyle, } from 'spotifyplus/react/Animated';
+import { SharedValue } from 'spotifyplus/react/Animated';
+import { LyricMotion } from '../Components/lyric-motion';
 
 interface Props extends CommonViewProps {
     metadata: SyllableVocalSet;
@@ -70,12 +71,6 @@ const SyllableVocalLine = ({ metadata, playbackMs }: Props) => {
     const lineEndTime = Math.max(...vocalLines.map(vocal => vocal.EndTime),);
     const lineEndMs = lineEndTime * 1000;
 
-    const lineOpacityStyle = useAnimatedStyle(() => {
-        'worklet';
-
-        const playbackPosition = playbackMs.value;
-        return { opacity: playbackPosition < lineStartMs ? 1 / 3 : playbackPosition >= lineEndMs ? 0.6 : 1 };
-    });
     const containerStyle = metadata.OppositeAligned
         ? {
             flex: 1,
@@ -174,7 +169,7 @@ const SyllableVocalLine = ({ metadata, playbackMs }: Props) => {
     const backgroundWords = useMemo(() => groupSyllablesInWords(backgroundSyllables ?? []), [backgroundSyllables]);
 
     return (
-        <Animated.View style={[containerStyle, lineOpacityStyle]}>
+        <LyricMotion style={containerStyle} opacityRange={[lineStartMs, lineEndMs]}>
             <View style={vocalFlowStyle}>
                 {leadWords.map((word, index) => (
                     <View key={index} style={{ flexDirection: 'row' }}>
@@ -213,7 +208,7 @@ const SyllableVocalLine = ({ metadata, playbackMs }: Props) => {
                     ))}
                 </View>
             )}
-        </Animated.View>
+        </LyricMotion>
     )
 }
 
