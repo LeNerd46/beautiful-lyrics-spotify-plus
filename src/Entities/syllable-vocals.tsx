@@ -6,11 +6,16 @@ import Spline from 'typescript-cubic-spline';
 import { SpotifyPlus } from 'spotifyplus';
 import { SharedValue } from 'spotifyplus/react/Animated';
 import { LyricMotion } from '../Components/lyric-motion';
+import { sampleMotion } from './native-motion';
+import { AnimationStyle, appleFloatTrack } from './animation-style';
 
 interface Props extends CommonViewProps {
+    animationStyle: AnimationStyle;
     metadata: SyllableVocalSet;
     playbackMs: SharedValue<number>;
 }
+
+const restingWordTrack = sampleMotion(0, 0, () => [0, 0, 0, 0, 1, 1]);
 
 const ScaleRange = [
     {
@@ -61,7 +66,7 @@ const GlowRange = [
     }
 ];
 
-const SyllableVocalLine = ({ metadata, playbackMs }: Props) => {
+const SyllableVocalLine = ({ metadata, playbackMs, animationStyle }: Props) => {
     const startTime = metadata.Lead.StartTime;
     const vocalLines = [metadata.Lead, ...(metadata.Background ?? []),];
 
@@ -167,16 +172,21 @@ const SyllableVocalLine = ({ metadata, playbackMs }: Props) => {
 
     const leadWords = useMemo(() => groupSyllablesInWords(leadSyllables), [leadSyllables]);
     const backgroundWords = useMemo(() => groupSyllablesInWords(backgroundSyllables ?? []), [backgroundSyllables]);
+    const leadFloatTracks = useMemo(() => animationStyle === 'apple' ? leadWords.map(word => appleFloatTrack(word[0].syllable.StartTime, word[word.length - 1].syllable.EndTime, 36)) : [], [animationStyle, leadWords]);
+    const backgroundFloatTracks = useMemo(() => animationStyle === 'apple' ? backgroundWords.map(word => appleFloatTrack(word[0].syllable.StartTime, word[word.length - 1].syllable.EndTime, 18, true)) : [], [animationStyle, backgroundWords]);
+    const WordContainer = LyricMotion;
 
     return (
         <LyricMotion style={containerStyle} opacityRange={[lineStartMs, lineEndMs]}>
             <View style={vocalFlowStyle}>
                 {leadWords.map((word, index) => (
-                    <View key={index} style={{ flexDirection: 'row' }}>
+                    <WordContainer key={index} motionTrack={animationStyle === 'apple' ? leadFloatTracks[index] : restingWordTrack} style={{ flexDirection: 'row' }}>
                         {word.map(({ syllable, emphasized, scaleSpline, yOffsetSpline, glowSpline }, syllableIndex) => (
                             <SyllableView
                                 key={syllableIndex}
                                 syllable={syllable}
+                                animationStyle={animationStyle}
+                                isLastWord={index === leadWords.length - 1}
                                 emphasized={emphasized}
                                 playbackMs={playbackMs}
                                 scaleSpline={scaleSpline}
@@ -184,18 +194,20 @@ const SyllableVocalLine = ({ metadata, playbackMs }: Props) => {
                                 glowSpline={glowSpline}
                             />
                         ))}
-                    </View>
+                    </WordContainer>
                 ))}
             </View>
 
             {backgroundSyllables && (
                 <View style={vocalFlowStyle}>
                     {backgroundWords.map((word, index) => (
-                        <View key={index} style={{ flexDirection: 'row' }}>
+                        <WordContainer key={index} motionTrack={animationStyle === 'apple' ? backgroundFloatTracks[index] : restingWordTrack} style={{ flexDirection: 'row' }}>
                             {word.map(({ syllable, emphasized, scaleSpline, yOffsetSpline, glowSpline }, syllableIndex) => (
                                 <SyllableView
                                     key={syllableIndex}
                                     syllable={syllable}
+                                    animationStyle={animationStyle}
+                                    isLastWord={index === backgroundWords.length - 1}
                                     emphasized={emphasized}
                                     isBackground
                                     playbackMs={playbackMs}
@@ -204,7 +216,7 @@ const SyllableVocalLine = ({ metadata, playbackMs }: Props) => {
                                     glowSpline={glowSpline}
                                 />
                             ))}
-                        </View>
+                        </WordContainer>
                     ))}
                 </View>
             )}

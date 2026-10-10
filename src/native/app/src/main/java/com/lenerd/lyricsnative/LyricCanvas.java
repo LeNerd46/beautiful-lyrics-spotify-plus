@@ -27,7 +27,7 @@ public class LyricCanvas extends SpotifyPlusComponent<LyricCanvasView> {
 
 class LyricCanvasView extends FrameLayout implements Choreographer.FrameCallback {
     final ArrayList<LyricRowView> rows = new ArrayList<>();
-    final LyricTween motion = new LyricTween();
+    final LyricSpring motion = new LyricSpring();
     final SpotifyPlusPlayer player;
     final float density;
     long commandVersion = -1;
@@ -55,16 +55,25 @@ class LyricCanvasView extends FrameLayout implements Choreographer.FrameCallback
             commandVersion = command.optLong("version");
             double timestamp = command.optDouble("startedAt", now);
             double target = command.optDouble("offset", follow);
-            double duration = command.optDouble("duration", 430);
+            JSONObject spring = command.optJSONObject("spring");
+            double stiffness = spring == null ? 90 : spring.optDouble("stiffness", 90);
+            double damping = spring == null ? 15 : spring.optDouble("damping", 15);
             boolean snap = command.optBoolean("snap", false);
             if (!paused) follow = motion.at(timestamp);
-            for (LyricRowView row : rows) row.begin(follow, target, timestamp, duration,
-                    command.optInt("firstVisibleIndex"), command.optBoolean("stagger"), snap, browse, viewportHeight());
-            motion.set(follow, target, timestamp, snap ? 0 : duration);
-            if (snap) follow = target;
+            else motion.snap(follow, timestamp);
+            org.json.JSONArray delays = command.optJSONArray("rowDelays");
+            for (LyricRowView row : rows) row.begin(follow, target, timestamp, stiffness, damping,
+                    command.optBoolean("stagger") && delays != null ? delays.optDouble(row.index, 0) : 0,
+                    snap, browse, viewportHeight());
+            if (snap) { motion.snap(target, timestamp); follow = target; }
+            else {
+                motion.retarget(target, timestamp, 0, stiffness, damping);
+            }
         } else if (paused && !nextPaused && !control.optBoolean("suspended", false)) {
-            motion.set(follow, motion.to, now, motion.duration);
-            for (LyricRowView row : rows) row.resume(follow, motion.to, now, motion.duration);
+            double target = motion.to;
+            motion.snap(follow, now);
+            motion.retarget(target, now, 0, motion.stiffness, motion.damping);
+            for (LyricRowView row : rows) row.resume(follow, target, now);
         }
         paused = nextPaused;
         setTranslationY((float) (-(follow + browse) * density));
@@ -125,9 +134,9 @@ class LyricCanvasView extends FrameLayout implements Choreographer.FrameCallback
         double height = viewportHeight();
         for (int index = 0; index < rows.size(); index++) {
             LyricRowView row = rows.get(index);
-            if (!paused) row.animate(follow, timestamp);
+            row.animate(follow, timestamp);
             if (row.estimatedHeight <= 0) continue;
-            double y = row.top + row.correction - follow - browse;
+            double y = row.displayedTop + row.correction - follow - browse;
             if (effectsPaused || y > height + 32 || y + Math.max(row.estimatedHeight, row.getHeight() / density) < -32) continue;
             for (int glyph = 0; glyph < row.targets.size(); glyph++) row.targets.get(glyph).animateMotion(lastPosition);
         }

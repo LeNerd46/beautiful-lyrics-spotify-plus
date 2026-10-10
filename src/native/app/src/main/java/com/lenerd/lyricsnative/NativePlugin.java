@@ -12,5 +12,12 @@ public class NativePlugin implements SpotifyPlusPlugin {
         registry.registerComponent(new LyricCanvas());
         registry.registerComponent(new LyricRow());
         registry.registerComponent(new LyricMotion());
+        registry.registerComponent(new LyricsChrome.Icon());
+        registry.registerComponent(new LyricsChrome.Title());
+        registry.registerComponent(new LyricsChrome.Inset());
+        registry.registerComponent(new LyricsChrome.Viewport());
+        registry.registerComponent(new LyricsChrome.Seek());
+        registry.registerComponent(new LyricsChrome.SheetWindow());
+        registry.registerComponent(new LyricsChrome.Sheet());
     }
 }

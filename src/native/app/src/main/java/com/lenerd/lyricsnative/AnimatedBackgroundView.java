@@ -19,6 +19,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public final class AnimatedBackgroundView extends View {
+    String artworkUrl = "";
+    int artworkRequest;
     private static final int SIZE = 64;
     private static final long FADE_MS = 1400;
     private static final ExecutorService PREPARER = Executors.newSingleThreadExecutor();

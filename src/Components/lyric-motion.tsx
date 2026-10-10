@@ -8,7 +8,8 @@ export const LyricMotion = createNativeComponent<CommonViewProps & {
 }>('LyricMotion');
 
 export const LyricRow = Animated.createAnimatedComponent(createNativeComponent<CommonViewProps & {
-    rowIndex: number; rowGeometry?: readonly [number, number];
+    rowIndex: number;
+    rowGeometry?: readonly [top: number, height: number, layoutStartedAt: number, layoutDelay: number, snapLayout: boolean];
 }>('LyricRow'));
 
 export const LyricCanvas = Animated.createAnimatedComponent(createNativeComponent<CommonViewProps & {

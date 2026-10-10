@@ -29,6 +29,7 @@ export const createWorkletSpring = (initial: number): WorkletSpringState => ({
 
 export const setWorkletSpring = (spring: WorkletSpringState, value: number) => {
     'worklet';
+
     spring.position = value;
     spring.velocity = 0;
     spring.final = value;
@@ -38,6 +39,7 @@ export const setWorkletSpring = (spring: WorkletSpringState, value: number) => {
 
 export const updateWorkletSpring = (spring: WorkletSpringState, final: number, dampingRatio: number, frequency: number, deltaTime: number, keepAwake = false,) => {
     'worklet';
+
     if (!keepAwake && spring.sleeping && final === spring.final) {
         return spring.position;
     }

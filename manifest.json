@@ -13,7 +13,6 @@
         "lyrics"
     ],
     "preview": "screenshot.png",
-    "changelog": "changelog.json",
     "api": 2,
     "assets": [
         "assets/**/*"
